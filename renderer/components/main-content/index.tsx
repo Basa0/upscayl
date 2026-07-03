@@ -121,7 +121,7 @@ const MainContent = ({
     [imagePath],
   );
 
-  const handleDrop = (e) => {
+  const handleDrop = (e: DragEvent) => {
     e.preventDefault();
     resetImagePaths();
     if (
@@ -135,12 +135,15 @@ const MainContent = ({
       });
       return;
     }
+    const file = e.dataTransfer.files[0];
     const type = e.dataTransfer.items[0].type;
-    const filePath = e.dataTransfer.files[0].path;
-    const extension = e.dataTransfer.files[0].name.split(".").at(-1);
+    const filePath = window.electron.getPathForFile(file);
+    const extension = file.name.split(".").at(-1);
     logit("⤵️ Dropped file: ", JSON.stringify({ type, filePath, extension }));
     if (
+      !filePath ||
       !type.includes("image") ||
+      !extension ||
       !VALID_IMAGE_FORMATS.includes(extension.toLowerCase())
     ) {
       logit("🚫 Invalid file dropped");
