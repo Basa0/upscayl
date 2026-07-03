@@ -47,6 +47,11 @@
   body {
     @apply bg-background text-foreground;
   }
+  html,
+  body,
+  #__next {
+    height: 100%;
+  }
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;

@@ -94,15 +94,15 @@ const MainContent = ({
   ]);
 
   // DRAG AND DROP HANDLERS
-  const handleDragEnter = (e) => {
+  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     console.log("drag enter");
   };
-  const handleDragLeave = (e) => {
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     console.log("drag leave");
   };
-  const handleDragOver = (e) => {
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     console.log("drag over");
   };
@@ -121,7 +121,7 @@ const MainContent = ({
     [imagePath],
   );
 
-  const handleDrop = (e: DragEvent) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     resetImagePaths();
     if (
@@ -138,13 +138,15 @@ const MainContent = ({
     const file = e.dataTransfer.files[0];
     const type = e.dataTransfer.items[0].type;
     const filePath = window.electron.getPathForFile(file);
-    const extension = file.name.split(".").at(-1);
+    const extension = file.name.split(".").at(-1)?.toLowerCase() as
+      | ImageFormat
+      | undefined;
     logit("⤵️ Dropped file: ", JSON.stringify({ type, filePath, extension }));
     if (
       !filePath ||
       !type.includes("image") ||
       !extension ||
-      !VALID_IMAGE_FORMATS.includes(extension.toLowerCase())
+      !VALID_IMAGE_FORMATS.includes(extension)
     ) {
       logit("🚫 Invalid file dropped");
       toast({

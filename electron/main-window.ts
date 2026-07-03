@@ -72,6 +72,10 @@ const createMainWindow = () => {
   mainWindow.webContents.send(ELECTRON_COMMANDS.OS, getPlatform());
 
   mainWindow.setMenuBarVisibility(false);
+
+  if (electronIsDev) {
+    mainWindow.webContents.openDevTools();
+  }
 };
 
 const getMainWindow = () => {

@@ -17,7 +17,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
       <Provider>
         <PostHogProviderWrapper>
-          <Component {...pageProps} data-theme="upscayl" />
+          <div data-theme="upscayl" className="h-full">
+            <Component {...pageProps} />
+          </div>
           <Toaster />
           <Tooltip
             className="z-[999] max-w-sm break-words !bg-secondary"

@@ -26,6 +26,12 @@ import path from "path";
 log.initialize({ preload: true });
 
 app.on("ready", async () => {
+  if (electronIsDev) {
+    // Next 16 defaults to Turbopack, which skips Tailwind content scanning
+    // for this renderer directory layout. Force webpack in dev.
+    process.env.IS_WEBPACK_TEST = "1";
+  }
+
   await prepareNext("./renderer");
 
   app.whenReady().then(() => {
