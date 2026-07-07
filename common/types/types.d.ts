@@ -1,4 +1,4 @@
-export type ImageFormat = 'png' | 'jpg' | 'jpeg' | 'webp';
+export type ImageFormat = "png" | "jpg" | "jpeg" | "webp";
 
 export type ImageUpscaylPayload = {
   imagePath: string;

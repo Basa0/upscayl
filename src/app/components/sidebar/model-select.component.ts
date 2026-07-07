@@ -1,31 +1,38 @@
-import { Component, ElementRef, inject, viewChild } from '@angular/core';
-import {
-  hasModelComparison,
-  ModelId,
-  MODELS
-} from '@common/models-list';
-import { TranslatePipe } from '../../pipes/translate.pipe';
-import { SettingsService } from '../../services/settings.service';
-import { TranslationService } from '../../services/translation.service';
-import { UpscaylStateService } from '../../services/upscayl-state.service';
+import { Component, ElementRef, inject, viewChild } from "@angular/core";
+import { hasModelComparison, ModelId, MODELS } from "@common/models-list";
+import { TranslatePipe } from "../../pipes/translate.pipe";
+import { SettingsService } from "../../services/settings.service";
+import { TranslationService } from "../../services/translation.service";
+import { UpscaylStateService } from "../../services/upscayl-state.service";
 
 @Component({
-  selector: 'app-model-select',
+  selector: "app-model-select",
   standalone: true,
   imports: [TranslatePipe],
   template: `
-    <p class="step-heading">{{ 'APP.MODEL_SELECTION.TITLE' | t }}</p>
+    <p class="step-heading">{{ "APP.MODEL_SELECTION.TITLE" | t }}</p>
 
     <button type="button" class="picker-trigger" (click)="openDialog()">
-      <span class="picker-trigger-label">{{ 'APP.MODEL_SELECTION.DESCRIPTION' | t }}</span>
+      <span class="picker-trigger-label">{{
+        "APP.MODEL_SELECTION.DESCRIPTION" | t
+      }}</span>
       <span class="picker-trigger-value">{{ selectedModelLabel() }}</span>
     </button>
 
-    <dialog #pickerDialog class="picker-dialog" (click)="onDialogBackdrop($event)">
+    <dialog
+      #pickerDialog
+      class="picker-dialog"
+      (click)="onDialogBackdrop($event)"
+    >
       <div class="picker-panel" (click)="$event.stopPropagation()">
         <header class="picker-header">
-          <h2>{{ 'APP.MODEL_SELECTION.DESCRIPTION' | t }}</h2>
-          <button type="button" class="close-btn" (click)="closeDialog()" aria-label="Close">
+          <h2>{{ "APP.MODEL_SELECTION.DESCRIPTION" | t }}</h2>
+          <button
+            type="button"
+            class="close-btn"
+            (click)="closeDialog()"
+            aria-label="Close"
+          >
             ×
           </button>
         </header>
@@ -40,11 +47,13 @@ import { UpscaylStateService } from '../../services/upscayl-state.service';
             >
               <div class="model-card-head">
                 <p class="model-name">
-                  {{ 'APP.MODEL_SELECTION.MODELS.' + modelId + '.NAME' | t }}
+                  {{ "APP.MODEL_SELECTION.MODELS." + modelId + ".NAME" | t }}
                 </p>
               </div>
               <p class="model-desc">
-                {{ 'APP.MODEL_SELECTION.MODELS.' + modelId + '.DESCRIPTION' | t }}
+                {{
+                  "APP.MODEL_SELECTION.MODELS." + modelId + ".DESCRIPTION" | t
+                }}
               </p>
               <div class="comparison">
                 <img
@@ -57,8 +66,12 @@ import { UpscaylStateService } from '../../services/upscayl-state.service';
                   [alt]="'APP.MODEL_SELECTION.AFTER' | t"
                   loading="lazy"
                 />
-                <span class="comparison-label before">{{ 'APP.MODEL_SELECTION.BEFORE' | t }}</span>
-                <span class="comparison-label after">{{ 'APP.MODEL_SELECTION.AFTER' | t }}</span>
+                <span class="comparison-label before">{{
+                  "APP.MODEL_SELECTION.BEFORE" | t
+                }}</span>
+                <span class="comparison-label after">{{
+                  "APP.MODEL_SELECTION.AFTER" | t
+                }}</span>
                 <span class="comparison-divider" aria-hidden="true"></span>
               </div>
             </button>
@@ -66,7 +79,9 @@ import { UpscaylStateService } from '../../services/upscayl-state.service';
         </div>
 
         @if (state.customModelIds().length > 0) {
-          <p class="custom-heading">{{ 'APP.MODEL_SELECTION.IMPORTED_CUSTOM_MODELS' | t }}</p>
+          <p class="custom-heading">
+            {{ "APP.MODEL_SELECTION.IMPORTED_CUSTOM_MODELS" | t }}
+          </p>
           <div class="custom-models">
             @for (customModel of state.customModelIds(); track customModel) {
               <button
@@ -330,7 +345,8 @@ export class ModelSelectComponent {
   readonly settings = inject(SettingsService);
   readonly state = inject(UpscaylStateService);
   private readonly i18n = inject(TranslationService);
-  private readonly pickerDialog = viewChild<ElementRef<HTMLDialogElement>>('pickerDialog');
+  private readonly pickerDialog =
+    viewChild<ElementRef<HTMLDialogElement>>("pickerDialog");
 
   readonly builtInModels = Object.keys(MODELS) as ModelId[];
 
@@ -342,7 +358,7 @@ export class ModelSelectComponent {
     return id;
   }
 
-  comparisonSrc(modelId: ModelId, side: 'before' | 'after'): string {
+  comparisonSrc(modelId: ModelId, side: "before" | "after"): string {
     return `/model-comparison/${modelId}/${side}.webp`;
   }
 

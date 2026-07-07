@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal } from "@angular/core";
 
 export interface ToastMessage {
   id: number;
@@ -6,7 +6,7 @@ export interface ToastMessage {
   description: string;
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ToastService {
   private seq = 0;
   readonly messages = signal<ToastMessage[]>([]);

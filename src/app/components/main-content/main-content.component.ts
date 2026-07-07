@@ -1,20 +1,20 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { getCurrentWebview } from '@tauri-apps/api/webview';
-import { open } from '@tauri-apps/plugin-dialog';
-import { TranslatePipe } from '../../pipes/translate.pipe';
-import { UiButtonComponent } from '../../ui/button.component';
-import { ComparisonSliderComponent } from './comparison-slider.component';
-import { LensViewComponent } from './lens-view.component';
-import { SettingsService } from '../../services/settings.service';
-import { UpscaylStateService } from '../../services/upscayl-state.service';
-import { TauriService } from '../../services/tauri.service';
-import { ToastService } from '../../services/toast.service';
-import { IMAGE_FORMATS } from '@common/image-formats';
-import getDirectoryFromPath from '@common/get-directory-from-path';
-import type { ImageFormat } from '@common/image-formats';
+import { Component, inject, OnInit, OnDestroy } from "@angular/core";
+import { getCurrentWebview } from "@tauri-apps/api/webview";
+import { open } from "@tauri-apps/plugin-dialog";
+import { TranslatePipe } from "../../pipes/translate.pipe";
+import { UiButtonComponent } from "../../ui/button.component";
+import { ComparisonSliderComponent } from "./comparison-slider.component";
+import { LensViewComponent } from "./lens-view.component";
+import { SettingsService } from "../../services/settings.service";
+import { UpscaylStateService } from "../../services/upscayl-state.service";
+import { TauriService } from "../../services/tauri.service";
+import { ToastService } from "../../services/toast.service";
+import { IMAGE_FORMATS } from "@common/image-formats";
+import getDirectoryFromPath from "@common/get-directory-from-path";
+import type { ImageFormat } from "@common/image-formats";
 
 @Component({
-  selector: 'app-main-content',
+  selector: "app-main-content",
   standalone: true,
   imports: [
     TranslatePipe,
@@ -24,11 +24,15 @@ import type { ImageFormat } from '@common/image-formats';
   ],
   template: `
     <main class="main-pane">
-      @if (tauri.platform() === 'mac') {
+      @if (tauri.platform() === "mac") {
         <div data-tauri-drag-region></div>
       }
 
-      @if (state.progress() && !state.upscaledImagePath() && !state.upscaledBatchFolderPath()) {
+      @if (
+        state.progress() &&
+        !state.upscaledImagePath() &&
+        !state.upscaledBatchFolderPath()
+      ) {
         <div class="progress">
           <div class="bar" [style.width.%]="progressPercent()"></div>
           <span>{{ state.progress() }}</span>
@@ -39,31 +43,47 @@ import type { ImageFormat } from '@common/image-formats';
       <div class="viewer-area">
         @if (showInstructions()) {
           <div class="instructions">
-            <h2>{{ 'HEADER.DESCRIPTION' | t }}</h2>
-            <p>Drag and drop an image here, or use the sidebar to select a file.</p>
+            <h2>{{ "HEADER.DESCRIPTION" | t }}</h2>
+            <p>
+              Drag and drop an image here, or use the sidebar to select a file.
+            </p>
           </div>
         }
 
-        @if (!state.batchMode() && state.imagePath() && !state.upscaledImagePath()) {
-          <img class="preview" [src]="asset(state.imagePath())" alt="Selected" (load)="onImageLoad($event)" />
+        @if (
+          !state.batchMode() && state.imagePath() && !state.upscaledImagePath()
+        ) {
+          <img
+            class="preview"
+            [src]="asset(state.imagePath())"
+            alt="Selected"
+            (load)="onImageLoad($event)"
+          />
         }
 
-        @if (state.batchMode() && state.batchFolderPath() && !state.upscaledBatchFolderPath()) {
-          <p class="batch-info">{{ 'APP.PROGRESS.BATCH.SELECTED_FOLDER_TITLE' | t }} {{ state.batchFolderPath() }}</p>
+        @if (
+          state.batchMode() &&
+          state.batchFolderPath() &&
+          !state.upscaledBatchFolderPath()
+        ) {
+          <p class="batch-info">
+            {{ "APP.PROGRESS.BATCH.SELECTED_FOLDER_TITLE" | t }}
+            {{ state.batchFolderPath() }}
+          </p>
         }
 
         @if (state.batchMode() && state.upscaledBatchFolderPath()) {
           <div class="done">
-            <p>{{ 'APP.PROGRESS.BATCH.DONE_TITLE' | t }}</p>
+            <p>{{ "APP.PROGRESS.BATCH.DONE_TITLE" | t }}</p>
             <ui-button (click)="openFolder()">
-              {{ 'APP.PROGRESS.BATCH.OPEN_UPSCAYLED_FOLDER_TITLE' | t }}
+              {{ "APP.PROGRESS.BATCH.OPEN_UPSCAYLED_FOLDER_TITLE" | t }}
             </ui-button>
           </div>
         }
 
         @if (
           !state.batchMode() &&
-          settings.viewType() === 'slider' &&
+          settings.viewType() === "slider" &&
           state.imagePath() &&
           state.upscaledImagePath()
         ) {
@@ -76,7 +96,7 @@ import type { ImageFormat } from '@common/image-formats';
 
         @if (
           !state.batchMode() &&
-          settings.viewType() === 'lens' &&
+          settings.viewType() === "lens" &&
           state.imagePath() &&
           state.upscaledImagePath()
         ) {
@@ -89,7 +109,9 @@ import type { ImageFormat } from '@common/image-formats';
         }
       </div>
 
-      @if (!state.batchMode() && (state.imagePath() || state.upscaledImagePath())) {
+      @if (
+        !state.batchMode() && (state.imagePath() || state.upscaledImagePath())
+      ) {
         <div class="view-toggle">
           <ui-button
             size="sm"
@@ -199,7 +221,9 @@ export class MainContentComponent implements OnInit, OnDestroy {
 
   showInstructions(): boolean {
     if (this.state.batchMode()) {
-      return !this.state.batchFolderPath() && !this.state.upscaledBatchFolderPath();
+      return (
+        !this.state.batchFolderPath() && !this.state.upscaledBatchFolderPath()
+      );
     }
     return !this.state.imagePath() && !this.state.upscaledImagePath();
   }
@@ -211,16 +235,21 @@ export class MainContentComponent implements OnInit, OnDestroy {
 
   onImageLoad(event: Event): void {
     const img = event.target as HTMLImageElement;
-    this.state.dimensions.set({ width: img.naturalWidth, height: img.naturalHeight });
+    this.state.dimensions.set({
+      width: img.naturalWidth,
+      height: img.naturalHeight,
+    });
   }
 
   async stop(): Promise<void> {
-    await this.tauri.invoke('stop_upscayl');
-    this.state.progress.set('');
+    await this.tauri.invoke("stop_upscayl");
+    this.state.progress.set("");
   }
 
   async openFolder(): Promise<void> {
-    await this.tauri.invoke('open_folder', { path: this.state.upscaledBatchFolderPath() });
+    await this.tauri.invoke("open_folder", {
+      path: this.state.upscaledBatchFolderPath(),
+    });
   }
 
   private async setupDragDrop(): Promise<void> {
@@ -228,7 +257,7 @@ export class MainContentComponent implements OnInit, OnDestroy {
     try {
       const webview = getCurrentWebview();
       this.unlistenDrag = await webview.onDragDropEvent((event) => {
-        if (event.payload.type === 'drop' && event.payload.paths?.length) {
+        if (event.payload.type === "drop" && event.payload.paths?.length) {
           this.handleDroppedPath(event.payload.paths[0]);
         }
       });
@@ -239,9 +268,9 @@ export class MainContentComponent implements OnInit, OnDestroy {
 
   private handleDroppedPath(path: string): void {
     this.state.resetImagePaths();
-    const ext = path.split('.').pop()?.toLowerCase() as ImageFormat | undefined;
+    const ext = path.split(".").pop()?.toLowerCase() as ImageFormat | undefined;
     if (!ext || !IMAGE_FORMATS.includes(ext)) {
-      this.toast.show('Invalid image file.');
+      this.toast.show("Invalid image file.");
       return;
     }
     this.state.imagePath.set(path);
@@ -253,8 +282,8 @@ export class MainContentComponent implements OnInit, OnDestroy {
   async selectImage(): Promise<void> {
     const path = await open({
       multiple: false,
-      filters: [{ name: 'Images', extensions: [...IMAGE_FORMATS] }],
+      filters: [{ name: "Images", extensions: [...IMAGE_FORMATS] }],
     });
-    if (typeof path === 'string') this.handleDroppedPath(path);
+    if (typeof path === "string") this.handleDroppedPath(path);
   }
 }

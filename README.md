@@ -1,6 +1,6 @@
 <div align="center">
 
-  # v2.15 is out! 🥳 [Download Now ⬇️](https://github.com/upscayl/upscayl/releases/latest)
+# v2.15 is out! 🥳 [Download Now ⬇️](https://github.com/upscayl/upscayl/releases/latest)
 
 <h3>Special thanks to our sponsors:</h3>
 <a href="https://www.warp.dev/upscayl">
@@ -26,8 +26,8 @@
 #
 
 <a href="https://github.com/upscayl/upscayl/releases/latest">
-  
-  ![Frame 111](https://github.com/upscayl/upscayl/assets/25067102/d1b4af3c-aade-4bc9-97d0-cf88db679931)
+
+![Frame 111](https://github.com/upscayl/upscayl/assets/25067102/d1b4af3c-aade-4bc9-97d0-cf88db679931)
 </a>
 
 <a href="https://upscayl.org/#download">
@@ -43,7 +43,7 @@
 
 <a href="https://t.me/iamnayam">
   <img src="https://user-images.githubusercontent.com/25067102/209297095-a3db856f-b760-40bb-a68e-f3a3086e18c7.png" width="200px" />   
-</a>      
+</a>
 
 <a href="https://x.com/upscayl">
   <img src="https://github.com/upscayl/upscayl/assets/25067102/917dcf6f-452b-43e6-95cd-2c6b0a47913d" width="200px" />
@@ -52,6 +52,7 @@
 # 🆙 Upscayl
 
 #### Free and Open Source AI Image Upscaler
+
 Upscayl lets you enlarge and enhance low-resolution images using advanced AI algorithms.
 Enlarge images without losing quality. It's almost like magic! 🎩🪄
 
@@ -110,9 +111,10 @@ Upscayl should be available on the software listings of most Linux operating sys
 2. Download the `upscayl-x.x.x-linux.AppImage` file.
 3. Right Click AppImage -> Go to Permissions tab -> Check 'allow file to execute' and then double click the file to run Upscayl.
 
-*You can also choose to install using other formats like RPM (Fedora), DEB (Debian/Ubuntu based), and ZIP (Any x86 Linux OS).*
+_You can also choose to install using other formats like RPM (Fedora), DEB (Debian/Ubuntu based), and ZIP (Any x86 Linux OS)._
 
 ## 🍎 macOS
+
 (MacOS 12 and later)
 
 <a href="https://apps.apple.com/us/app/upscayl/id6468265473?mt=12">
@@ -130,6 +132,7 @@ Upscayl should be available on the software listings of most Linux operating sys
 `brew install --cask upscayl`
 
 ## 🐌 Windows
+
 (Windows 10 and later)
 
 1. Go to [releases section](https://github.com/upscayl/upscayl/releases/latest) or [our official website](https://upscayl.org/).
@@ -215,7 +218,7 @@ Tag a release as `v*` (e.g. `v2026.0.1`) to trigger [`.github/workflows/release.
   - It is for selecting which GPU to use. The specific procedure is detailed in the [Wiki](https://github.com/upscayl/upscayl/wiki/Guide).
     - Note that for Windows systems, if Upscayl is not set to performance mode, the system may override this setting.
 - **Where do I find more models?**
-  -  More models can be taken from here: https://github.com/upscayl/custom-models
+  - More models can be taken from here: https://github.com/upscayl/custom-models
 
 # 🎁 Donate
 
@@ -226,13 +229,14 @@ Tag a release as `v*` (e.g. `v2026.0.1`) to trigger [`.github/workflows/release.
 # ❤ Credits
 
 - Real-ESRGAN for their wonderful research work.
-[Real-ESRGAN: Copyright (c) 2021, Xintao Wang](https://github.com/xinntao/Real-ESRGAN/)
+  [Real-ESRGAN: Copyright (c) 2021, Xintao Wang](https://github.com/xinntao/Real-ESRGAN/)
 - @JanDeDinoMan, @xanderfrangos, @Fdawgs, @keturn for their code contributions
 - @aaronliu0130 for providing community support :)
 - Helaman for their [HFA2k model](https://openmodeldb.info/models/4x-HFA2k) (included as "High Fidelity")
 - Foolhardy for their [Remacri model](https://openmodeldb.info/models/4x-Remacri).
-- [Kim2091](https://upscale.wiki/wiki/User:Kim2091)	for their [Ultrasharp and Ultramix Balanced model](https://openmodeldb.info/models/4x-UltraSharp).
+- [Kim2091](https://upscale.wiki/wiki/User:Kim2091) for their [Ultrasharp and Ultramix Balanced model](https://openmodeldb.info/models/4x-UltraSharp).
 - @NicKoehler for their amazing logo :)
+
 #
 
 <div align="center">

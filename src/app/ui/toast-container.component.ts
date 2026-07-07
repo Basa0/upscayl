@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { ToastService } from '../services/toast.service';
+import { Component, inject } from "@angular/core";
+import { ToastService } from "../services/toast.service";
 
 @Component({
-  selector: 'ui-toast-container',
+  selector: "ui-toast-container",
   standalone: true,
   template: `
     <div class="toasts">

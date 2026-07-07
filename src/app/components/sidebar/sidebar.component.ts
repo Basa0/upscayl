@@ -1,22 +1,22 @@
-import { Component, inject, signal } from '@angular/core';
-import { TranslatePipe } from '../../pipes/translate.pipe';
-import { UpscaylTabComponent } from './upscayl-tab.component';
-import { SettingsTabComponent } from './settings-tab.component';
-import { SettingsService } from '../../services/settings.service';
-import { TauriService } from '../../services/tauri.service';
-import { UpscaylStateService } from '../../services/upscayl-state.service';
+import { Component, inject, signal } from "@angular/core";
+import { TranslatePipe } from "../../pipes/translate.pipe";
+import { UpscaylTabComponent } from "./upscayl-tab.component";
+import { SettingsTabComponent } from "./settings-tab.component";
+import { SettingsService } from "../../services/settings.service";
+import { TauriService } from "../../services/tauri.service";
+import { UpscaylStateService } from "../../services/upscayl-state.service";
 
 @Component({
-  selector: 'app-sidebar',
+  selector: "app-sidebar",
   standalone: true,
   imports: [TranslatePipe, UpscaylTabComponent, SettingsTabComponent],
   template: `
     <aside class="sidebar" [class.hidden]="!settings.showSidebar()">
-      @if (tauri.platform() === 'mac') {
+      @if (tauri.platform() === "mac") {
         <div class="mac-titlebar"></div>
       }
       <header class="header">
-        <h1>{{ 'TITLE' | t }}</h1>
+        <h1>{{ "TITLE" | t }}</h1>
         <p class="version">v{{ state.appVersion() }}</p>
       </header>
 
@@ -35,12 +35,12 @@ import { UpscaylStateService } from '../../services/upscayl-state.service';
           [attr.aria-selected]="tab() === 'settings'"
           (click)="tab.set('settings')"
         >
-          {{ 'SETTINGS.TITLE' | t }}
+          {{ "SETTINGS.TITLE" | t }}
         </button>
       </div>
 
       <div class="tab-panel">
-        @if (tab() === 'upscale') {
+        @if (tab() === "upscale") {
           <app-upscayl-tab />
         } @else {
           <app-settings-tab />
@@ -48,13 +48,25 @@ import { UpscaylStateService } from '../../services/upscayl-state.service';
       </div>
 
       <footer class="footer">
-        <span>{{ 'FOOTER.COPYRIGHT' | t }} Upscayl</span>
+        <span>{{ "FOOTER.COPYRIGHT" | t }} Upscayl</span>
       </footer>
 
-      <button class="collapse-btn" type="button" (click)="settings.showSidebar.set(false)">‹</button>
+      <button
+        class="collapse-btn"
+        type="button"
+        (click)="settings.showSidebar.set(false)"
+      >
+        ‹
+      </button>
     </aside>
     @if (!settings.showSidebar()) {
-      <button class="expand-btn" type="button" (click)="settings.showSidebar.set(true)">›</button>
+      <button
+        class="expand-btn"
+        type="button"
+        (click)="settings.showSidebar.set(true)"
+      >
+        ›
+      </button>
     }
   `,
   styles: `
@@ -98,7 +110,7 @@ import { UpscaylStateService } from '../../services/upscayl-state.service';
       color: var(--color-base-content);
       cursor: pointer;
     }
-    .tab-list button[aria-selected='true'] {
+    .tab-list button[aria-selected="true"] {
       border-color: var(--color-primary);
       color: var(--color-primary);
       font-weight: 700;
@@ -121,7 +133,11 @@ import { UpscaylStateService } from '../../services/upscayl-state.service';
       border-radius: 999px;
     }
     .tab-panel::-webkit-scrollbar-thumb:hover {
-      background: color-mix(in srgb, var(--color-base-content) 20%, var(--color-base-300));
+      background: color-mix(
+        in srgb,
+        var(--color-base-content) 20%,
+        var(--color-base-300)
+      );
     }
     .footer {
       padding: 0.75rem 1rem;
@@ -155,5 +171,5 @@ export class SidebarComponent {
   readonly settings = inject(SettingsService);
   readonly tauri = inject(TauriService);
   readonly state = inject(UpscaylStateService);
-  readonly tab = signal<'upscale' | 'settings'>('upscale');
+  readonly tab = signal<"upscale" | "settings">("upscale");
 }

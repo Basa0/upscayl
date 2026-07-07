@@ -1,7 +1,7 @@
-import { Component, input, signal, HostListener } from '@angular/core';
+import { Component, input, signal, HostListener } from "@angular/core";
 
 @Component({
-  selector: 'app-lens-view',
+  selector: "app-lens-view",
   standalone: true,
   template: `
     <div
@@ -71,9 +71,9 @@ export class LensViewComponent {
   readonly x = signal(0);
   readonly y = signal(0);
   readonly hovering = signal(false);
-  readonly transform = signal('translate(0, 0)');
+  readonly transform = signal("translate(0, 0)");
 
-  @HostListener('mousemove', ['$event'])
+  @HostListener("mousemove", ["$event"])
   onMove(event: MouseEvent): void {
     const el = event.currentTarget as HTMLElement;
     const rect = el.getBoundingClientRect();

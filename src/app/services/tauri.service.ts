@@ -1,11 +1,12 @@
-import { Injectable, signal, computed, effect } from '@angular/core';
-import { invoke } from '@tauri-apps/api/core';
-import { listen, UnlistenFn } from '@tauri-apps/api/event';
-import { convertFileSrc } from '@tauri-apps/api/core';
+import { Injectable, signal, computed, effect } from "@angular/core";
+import { invoke } from "@tauri-apps/api/core";
+import { listen, UnlistenFn } from "@tauri-apps/api/event";
+import { convertFileSrc } from "@tauri-apps/api/core";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class TauriService {
-  readonly isTauri = typeof window !== 'undefined' && '__TAURI_INTERNALS__' in window;
+  readonly isTauri =
+    typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
 
   invoke<T>(cmd: string, args?: Record<string, unknown>): Promise<T> {
     return invoke<T>(cmd, args);
@@ -16,14 +17,14 @@ export class TauriService {
   }
 
   assetUrl(path: string): string {
-    if (!path) return '';
+    if (!path) return "";
     return convertFileSrc(path);
   }
 
-  platform(): 'mac' | 'win' | 'linux' {
+  platform(): "mac" | "win" | "linux" {
     const ua = navigator.userAgent.toLowerCase();
-    if (ua.includes('mac')) return 'mac';
-    if (ua.includes('win')) return 'win';
-    return 'linux';
+    if (ua.includes("mac")) return "mac";
+    if (ua.includes("win")) return "win";
+    return "linux";
   }
 }

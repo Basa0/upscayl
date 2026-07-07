@@ -30,7 +30,11 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/styles/tokens.css", "src/styles/themes.css", "src/styles.css"]
+            "styles": [
+              "src/styles/tokens.css",
+              "src/styles/themes.css",
+              "src/styles.css"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,13 +1,17 @@
-import { Component, model } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, model } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
 @Component({
-  selector: 'ui-toggle',
+  selector: "ui-toggle",
   standalone: true,
   imports: [FormsModule],
   template: `
     <label class="toggle">
-      <input type="checkbox" [ngModel]="checked()" (ngModelChange)="checked.set($event)" />
+      <input
+        type="checkbox"
+        [ngModel]="checked()"
+        (ngModelChange)="checked.set($event)"
+      />
       <span class="slider"></span>
     </label>
   `,
@@ -32,7 +36,7 @@ import { FormsModule } from '@angular/forms';
       transition: background 0.2s;
     }
     .slider::before {
-      content: '';
+      content: "";
       position: absolute;
       width: 18px;
       height: 18px;

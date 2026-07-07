@@ -1,9 +1,15 @@
-import { Component, input } from '@angular/core';
+import { Component, input } from "@angular/core";
 
 @Component({
-  selector: 'ui-button',
+  selector: "ui-button",
   standalone: true,
-  template: `<button [class]="classes()" [disabled]="disabled()" [type]="type()"><ng-content /></button>`,
+  template: `<button
+    [class]="classes()"
+    [disabled]="disabled()"
+    [type]="type()"
+  >
+    <ng-content />
+  </button>`,
   styles: `
     button {
       display: inline-flex;
@@ -43,10 +49,10 @@ import { Component, input } from '@angular/core';
   `,
 })
 export class UiButtonComponent {
-  readonly variant = input<'primary' | 'secondary' | 'ghost'>('primary');
-  readonly size = input<'md' | 'sm'>('md');
+  readonly variant = input<"primary" | "secondary" | "ghost">("primary");
+  readonly size = input<"md" | "sm">("md");
   readonly disabled = input(false);
-  readonly type = input<'button' | 'submit'>('button');
+  readonly type = input<"button" | "submit">("button");
 
   classes(): string {
     return `${this.variant()} ${this.size()}`;

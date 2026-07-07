@@ -1,3 +1,14 @@
 **/*.plist
 **/resources/**/*
 *.plist
+
+# Rust
+**/*.rs
+src-tauri/Cargo.lock
+
+# Binaries and assets
+src-tauri/binaries/**
+src-tauri/icons/**
+models/**
+public/**
+**/*.{png,jpg,jpeg,gif,webp,ico,icns,dll,exe,param,bin}

@@ -1,28 +1,30 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal } from "@angular/core";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class UpscaylStateService {
   readonly batchMode = signal(false);
-  readonly progress = signal('');
-  readonly imagePath = signal('');
-  readonly upscaledImagePath = signal('');
-  readonly batchFolderPath = signal('');
-  readonly upscaledBatchFolderPath = signal('');
-  readonly dimensions = signal<{ width: number | null; height: number | null }>({
-    width: null,
-    height: null,
-  });
+  readonly progress = signal("");
+  readonly imagePath = signal("");
+  readonly upscaledImagePath = signal("");
+  readonly batchFolderPath = signal("");
+  readonly upscaledBatchFolderPath = signal("");
+  readonly dimensions = signal<{ width: number | null; height: number | null }>(
+    {
+      width: null,
+      height: null,
+    },
+  );
   readonly doubleUpscaylCounter = signal(0);
   readonly customModelIds = signal<string[]>([]);
   readonly logs = signal<string[]>([]);
-  readonly appVersion = signal('');
+  readonly appVersion = signal("");
 
   resetImagePaths(): void {
-    this.imagePath.set('');
-    this.upscaledImagePath.set('');
-    this.batchFolderPath.set('');
-    this.upscaledBatchFolderPath.set('');
-    this.progress.set('');
+    this.imagePath.set("");
+    this.upscaledImagePath.set("");
+    this.batchFolderPath.set("");
+    this.upscaledBatchFolderPath.set("");
+    this.progress.set("");
     this.dimensions.set({ width: null, height: null });
   }
 

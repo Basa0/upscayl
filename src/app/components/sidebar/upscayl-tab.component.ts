@@ -1,25 +1,30 @@
-import { Component, computed, inject } from '@angular/core';
-import { open } from '@tauri-apps/plugin-dialog';
-import { TranslatePipe } from '../../pipes/translate.pipe';
-import { UiButtonComponent } from '../../ui/button.component';
-import { UiToggleComponent } from '../../ui/toggle.component';
-import { ModelSelectComponent } from './model-select.component';
-import { SettingsService } from '../../services/settings.service';
-import { UpscaylStateService } from '../../services/upscayl-state.service';
-import { TauriService } from '../../services/tauri.service';
-import { ToastService } from '../../services/toast.service';
-import { IMAGE_FORMATS } from '@common/image-formats';
-import getDirectoryFromPath from '@common/get-directory-from-path';
+import { Component, computed, inject } from "@angular/core";
+import { open } from "@tauri-apps/plugin-dialog";
+import { TranslatePipe } from "../../pipes/translate.pipe";
+import { UiButtonComponent } from "../../ui/button.component";
+import { UiToggleComponent } from "../../ui/toggle.component";
+import { ModelSelectComponent } from "./model-select.component";
+import { SettingsService } from "../../services/settings.service";
+import { UpscaylStateService } from "../../services/upscayl-state.service";
+import { TauriService } from "../../services/tauri.service";
+import { ToastService } from "../../services/toast.service";
+import { IMAGE_FORMATS } from "@common/image-formats";
+import getDirectoryFromPath from "@common/get-directory-from-path";
 import type {
   BatchUpscaylPayload,
   DoubleUpscaylPayload,
   ImageUpscaylPayload,
-} from '@common/types/types';
+} from "@common/types/types";
 
 @Component({
-  selector: 'app-upscayl-tab',
+  selector: "app-upscayl-tab",
   standalone: true,
-  imports: [TranslatePipe, UiButtonComponent, UiToggleComponent, ModelSelectComponent],
+  imports: [
+    TranslatePipe,
+    UiButtonComponent,
+    UiToggleComponent,
+    ModelSelectComponent,
+  ],
   template: `
     <div class="panel-scroll">
       <div class="row">
@@ -27,16 +32,16 @@ import type {
           [checked]="state.batchMode()"
           (checkedChange)="state.batchMode.set($event)"
         />
-        <span>{{ 'APP.BATCH_MODE.TITLE' | t }}</span>
+        <span>{{ "APP.BATCH_MODE.TITLE" | t }}</span>
       </div>
 
       <section>
-        <p class="step-heading">{{ 'APP.FILE_SELECTION.TITLE' | t }}</p>
+        <p class="step-heading">{{ "APP.FILE_SELECTION.TITLE" | t }}</p>
         <ui-button (click)="pickInput()">
           {{
             state.batchMode()
-              ? ('APP.FILE_SELECTION.BATCH_MODE_TYPE' | t)
-              : ('APP.FILE_SELECTION.SINGLE_MODE_TYPE' | t)
+              ? ("APP.FILE_SELECTION.BATCH_MODE_TYPE" | t)
+              : ("APP.FILE_SELECTION.SINGLE_MODE_TYPE" | t)
           }}
         </ui-button>
       </section>
@@ -50,11 +55,13 @@ import type {
               [checked]="settings.doubleUpscayl()"
               (change)="settings.doubleUpscayl.set($any($event.target).checked)"
             />
-            {{ 'APP.DOUBLE_UPSCAYL.TITLE' | t }}
+            {{ "APP.DOUBLE_UPSCAYL.TITLE" | t }}
           </label>
         }
         <label class="field">
-          <span class="step-heading">{{ 'SETTINGS.IMAGE_SCALE.TITLE' | t }}</span>
+          <span class="step-heading">{{
+            "SETTINGS.IMAGE_SCALE.TITLE" | t
+          }}</span>
           <select [value]="settings.scale()" (change)="onScale($event)">
             <option value="2">2x</option>
             <option value="3">3x</option>
@@ -66,9 +73,9 @@ import type {
       </section>
 
       <section>
-        <p class="step-heading">{{ 'APP.OUTPUT_PATH_SELECTION.TITLE' | t }}</p>
+        <p class="step-heading">{{ "APP.OUTPUT_PATH_SELECTION.TITLE" | t }}</p>
         <ui-button variant="ghost" (click)="pickOutput()">
-          {{ 'APP.OUTPUT_PATH_SELECTION.BUTTON_TITLE' | t }}
+          {{ "APP.OUTPUT_PATH_SELECTION.BUTTON_TITLE" | t }}
         </ui-button>
         @if (settings.savedOutputPath()) {
           <p class="path">{{ settings.savedOutputPath() }}</p>
@@ -76,20 +83,30 @@ import type {
       </section>
 
       <section>
-        <p class="step-heading">{{ 'APP.SCALE_SELECTION.TITLE' | t }}</p>
+        <p class="step-heading">{{ "APP.SCALE_SELECTION.TITLE" | t }}</p>
         @if (resolution()) {
           <p class="hint">
-            {{ 'APP.SCALE_SELECTION.FROM_TITLE' | t }}
-            <strong>{{ state.dimensions().width }}x{{ state.dimensions().height }}</strong>
-            {{ 'APP.SCALE_SELECTION.TO_TITLE' | t }}
-            <strong>{{ resolution()!.width }}x{{ resolution()!.height }}</strong>
+            {{ "APP.SCALE_SELECTION.FROM_TITLE" | t }}
+            <strong
+              >{{ state.dimensions().width }}x{{
+                state.dimensions().height
+              }}</strong
+            >
+            {{ "APP.SCALE_SELECTION.TO_TITLE" | t }}
+            <strong
+              >{{ resolution()!.width }}x{{ resolution()!.height }}</strong
+            >
           </p>
         }
-        <ui-button variant="secondary" [disabled]="!canStart()" (click)="startUpscayl()">
+        <ui-button
+          variant="secondary"
+          [disabled]="!canStart()"
+          (click)="startUpscayl()"
+        >
           {{
             state.progress()
-              ? ('APP.SCALE_SELECTION.IN_PROGRESS_BUTTON_TITLE' | t)
-              : ('APP.SCALE_SELECTION.START_BUTTON_TITLE' | t)
+              ? ("APP.SCALE_SELECTION.IN_PROGRESS_BUTTON_TITLE" | t)
+              : ("APP.SCALE_SELECTION.START_BUTTON_TITLE" | t)
           }}
         </ui-button>
       </section>
@@ -153,7 +170,7 @@ export class UpscaylTabComponent {
     this.state.resetImagePaths();
     if (this.state.batchMode()) {
       const path = await open({ directory: true, multiple: false });
-      if (typeof path === 'string') {
+      if (typeof path === "string") {
         this.state.batchFolderPath.set(path);
         if (!this.settings.rememberOutputFolder()) {
           this.settings.savedOutputPath.set(path);
@@ -163,9 +180,9 @@ export class UpscaylTabComponent {
     }
     const path = await open({
       multiple: false,
-      filters: [{ name: 'Images', extensions: [...IMAGE_FORMATS] }],
+      filters: [{ name: "Images", extensions: [...IMAGE_FORMATS] }],
     });
-    if (typeof path === 'string') {
+    if (typeof path === "string") {
       this.state.imagePath.set(path);
       if (!this.settings.rememberOutputFolder()) {
         this.settings.savedOutputPath.set(getDirectoryFromPath(path));
@@ -175,7 +192,7 @@ export class UpscaylTabComponent {
 
   async pickOutput(): Promise<void> {
     const path = await open({ directory: true, multiple: false });
-    this.settings.savedOutputPath.set(typeof path === 'string' ? path : null);
+    this.settings.savedOutputPath.set(typeof path === "string" ? path : null);
   }
 
   canStart(): boolean {
@@ -186,13 +203,13 @@ export class UpscaylTabComponent {
   }
 
   async startUpscayl(): Promise<void> {
-    this.state.upscaledImagePath.set('');
-    this.state.upscaledBatchFolderPath.set('');
+    this.state.upscaledImagePath.set("");
+    this.state.upscaledBatchFolderPath.set("");
     if (!this.canStart()) {
-      this.toast.show('Select an image or folder and output path first.');
+      this.toast.show("Select an image or folder and output path first.");
       return;
     }
-    this.state.progress.set('Please wait...');
+    this.state.progress.set("Please wait...");
 
     const base = {
       model: this.settings.selectedModelId(),
@@ -218,14 +235,14 @@ export class UpscaylTabComponent {
           imagePath: this.state.imagePath(),
           outputPath: this.settings.savedOutputPath()!,
         };
-        await this.tauri.invoke('upscayl_double', { payload });
+        await this.tauri.invoke("upscayl_double", { payload });
       } else if (this.state.batchMode()) {
         const payload: BatchUpscaylPayload = {
           ...base,
           batchFolderPath: this.state.batchFolderPath(),
           outputPath: this.settings.savedOutputPath()!,
         };
-        await this.tauri.invoke('upscayl_batch', { payload });
+        await this.tauri.invoke("upscayl_batch", { payload });
       } else {
         const payload: ImageUpscaylPayload = {
           ...base,
@@ -233,11 +250,11 @@ export class UpscaylTabComponent {
           outputPath: this.settings.savedOutputPath()!,
           overwrite: this.settings.overwrite(),
         };
-        await this.tauri.invoke('upscayl_image', { payload });
+        await this.tauri.invoke("upscayl_image", { payload });
       }
     } catch (e) {
       this.toast.show(String(e));
-      this.state.progress.set('');
+      this.state.progress.set("");
     }
   }
 
