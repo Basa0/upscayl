@@ -15,6 +15,7 @@
     "prepare-sidecars": "node scripts/prepare-sidecars.js",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "prepare": "lefthook install",
     "tauri": "tauri"
   },
   "dependencies": {
@@ -40,6 +41,7 @@
     "@angular/cli": "^21.2.18",
     "@angular/compiler-cli": "^21.2.0",
     "@tauri-apps/cli": "^2.10.1",
+    "lefthook": "^2.1.9",
     "prettier": "^3.9.4",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "~5.9.2"
