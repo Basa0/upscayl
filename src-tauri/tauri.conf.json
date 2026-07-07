@@ -4,7 +4,7 @@
   "version": "26.0.1",
   "identifier": "org.upscayl.Upscayl",
   "build": {
-    "beforeDevCommand": "npm run start",
+    "beforeDevCommand": "npm run start:web",
     "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "npm run build:web",
     "frontendDist": "../dist/upscayl/browser"

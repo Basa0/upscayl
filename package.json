@@ -7,7 +7,8 @@
   "license": "AGPL-3.0",
   "scripts": {
     "ng": "ng",
-    "start": "npx ng serve",
+    "start": "tauri dev",
+    "start:web": "npx ng serve",
     "build:web": "npx ng build",
     "dev": "npm run prepare-sidecars && tauri dev",
     "build": "npm run prepare-sidecars && tauri build",
