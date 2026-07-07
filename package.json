@@ -13,6 +13,7 @@
     "dev": "npm run prepare-sidecars && tauri dev",
     "build": "npm run prepare-sidecars && tauri build",
     "prepare-sidecars": "node scripts/prepare-sidecars.js",
+    "install:windows": "node scripts/install-windows-nsis.js",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "lefthook install",
