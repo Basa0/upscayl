@@ -39,11 +39,13 @@ import { UpscaylStateService } from '../../services/upscayl-state.service';
         </button>
       </div>
 
-      @if (tab() === 'upscale') {
-        <app-upscayl-tab />
-      } @else {
-        <app-settings-tab />
-      }
+      <div class="tab-panel">
+        @if (tab() === 'upscale') {
+          <app-upscayl-tab />
+        } @else {
+          <app-settings-tab />
+        }
+      </div>
 
       <footer class="footer">
         <span>{{ 'FOOTER.COPYRIGHT' | t }} Upscayl</span>
@@ -100,6 +102,26 @@ import { UpscaylStateService } from '../../services/upscayl-state.service';
       border-color: var(--color-primary);
       color: var(--color-primary);
       font-weight: 700;
+    }
+    .tab-panel {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-base-300) transparent;
+    }
+    .tab-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+    .tab-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .tab-panel::-webkit-scrollbar-thumb {
+      background: var(--color-base-300);
+      border-radius: 999px;
+    }
+    .tab-panel::-webkit-scrollbar-thumb:hover {
+      background: color-mix(in srgb, var(--color-base-content) 20%, var(--color-base-300));
     }
     .footer {
       padding: 0.75rem 1rem;

@@ -152,6 +152,12 @@ import { TauriService } from '../../services/tauri.service';
     </div>
   `,
   styles: `
+    .panel-scroll {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      padding: var(--space-5);
+    }
     textarea,
     input[type='text'],
     input[type='number'] {
