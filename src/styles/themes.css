@@ -1,0 +1,94 @@
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-base-100: #1d232a;
+  --color-base-200: #191e24;
+  --color-base-300: #15191e;
+  --color-base-content: #a6adbb;
+  --color-primary: #3abff8;
+  --color-primary-content: #002b3d;
+  --color-secondary: #828df8;
+  --color-secondary-content: #1a1c2e;
+  --color-accent: #37cdbe;
+  --color-accent-content: #0f2a27;
+  --color-neutral: #2a323c;
+  --color-neutral-content: #d6d6d6;
+  --color-success: #36d399;
+  --color-warning: #fbbd23;
+  --color-error: #f87272;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #f2f2f2;
+  --color-base-300: #e5e6e6;
+  --color-base-content: #1f2937;
+  --color-primary: #2563eb;
+  --color-primary-content: #ffffff;
+  --color-secondary: #7c3aed;
+  --color-secondary-content: #ffffff;
+  --color-accent: #0d9488;
+  --color-accent-content: #ffffff;
+  --color-neutral: #374151;
+  --color-neutral-content: #f9fafb;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+}
+
+[data-theme="dracula"] {
+  color-scheme: dark;
+  --color-base-100: #282a36;
+  --color-base-200: #242631;
+  --color-base-300: #20212c;
+  --color-base-content: #f8f8f2;
+  --color-primary: #ff79c6;
+  --color-primary-content: #2a0f20;
+  --color-secondary: #bd93f9;
+  --color-secondary-content: #1a1028;
+  --color-accent: #50fa7b;
+  --color-accent-content: #0f2a18;
+  --color-neutral: #44475a;
+  --color-neutral-content: #f8f8f2;
+  --color-success: #50fa7b;
+  --color-warning: #f1fa8c;
+  --color-error: #ff5555;
+}
+
+[data-theme="nord"] {
+  color-scheme: dark;
+  --color-base-100: #2e3440;
+  --color-base-200: #272c36;
+  --color-base-300: #22262f;
+  --color-base-content: #eceff4;
+  --color-primary: #88c0d0;
+  --color-primary-content: #1b2b31;
+  --color-secondary: #81a1c1;
+  --color-secondary-content: #1a2530;
+  --color-accent: #a3be8c;
+  --color-accent-content: #1f2a1a;
+  --color-neutral: #4c566a;
+  --color-neutral-content: #eceff4;
+  --color-success: #a3be8c;
+  --color-warning: #ebcb8b;
+  --color-error: #bf616a;
+}
+
+[data-theme="synthwave"] {
+  color-scheme: dark;
+  --color-base-100: #1a1033;
+  --color-base-200: #160d2b;
+  --color-base-300: #120a23;
+  --color-base-content: #f0e6ff;
+  --color-primary: #ff71ce;
+  --color-primary-content: #2a0f24;
+  --color-secondary: #01cdfe;
+  --color-secondary-content: #002833;
+  --color-accent: #b967ff;
+  --color-accent-content: #1f0f33;
+  --color-neutral: #2d1b4e;
+  --color-neutral-content: #f0e6ff;
+  --color-success: #05ffa1;
+  --color-warning: #fffb96;
+  --color-error: #ff6b6b;
+}

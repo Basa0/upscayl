@@ -1,26 +1,36 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "rootDir": "./",
-    "outDir": "./export",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "paths": {
-      "@electron/*": ["./electron/*"],
-      "@/*": ["./renderer/*"],
       "@common/*": ["./common/*"]
     }
   },
-  "include": [
-    "./electron/**/*",
-    "./common/**/*",
-    "./renderer/**/*",
-    "scripts/generate-schema.js",
-    "scripts/validate-schema.js"
-  ],
-  "exclude": ["node_modules", "public", "renderer"]
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }
