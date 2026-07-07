@@ -1,37 +1,34 @@
-import { ImageFormat } from "@electron/types/types";
+export type ImageFormat = 'png' | 'jpg' | 'jpeg' | 'webp';
 
 export type ImageUpscaylPayload = {
   imagePath: string;
   outputPath: string;
   scale: string;
   model: string;
-  gpuId: string;
+  gpuId: string | null;
   saveImageAs: ImageFormat;
   overwrite: boolean;
   compression: string;
   noImageProcessing: boolean;
-  customWidth: string;
+  customWidth: string | null;
   useCustomWidth: boolean;
-  tileSize: number;
+  tileSize: number | null;
   ttaMode: boolean;
   copyMetadata: boolean;
 };
 
 export type DoubleUpscaylPayload = {
   model: string;
-  /**
-   * The path to the image to upscale.
-   */
   imagePath: string;
   outputPath: string;
   scale: string;
-  gpuId: string;
+  gpuId: string | null;
   saveImageAs: ImageFormat;
   compression: string;
   noImageProcessing: boolean;
-  customWidth: string;
+  customWidth: string | null;
   useCustomWidth: boolean;
-  tileSize: number;
+  tileSize: number | null;
   ttaMode: boolean;
   copyMetadata: boolean;
 };
@@ -40,14 +37,14 @@ export type BatchUpscaylPayload = {
   batchFolderPath: string;
   outputPath: string;
   model: string;
-  gpuId: string;
+  gpuId: string | null;
   saveImageAs: ImageFormat;
   scale: string;
   compression: string;
   noImageProcessing: boolean;
-  customWidth: string;
+  customWidth: string | null;
   useCustomWidth: boolean;
-  tileSize: number;
+  tileSize: number | null;
   ttaMode: boolean;
   copyMetadata: boolean;
 };

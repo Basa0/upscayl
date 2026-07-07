@@ -5,20 +5,18 @@
 /.pnp
 .pnp.js
 
-/main/*.js
-out/
-
 # testing
 /coverage
 
-# next.js
-/renderer/.next/
-/renderer/out/
+/.angular
 
 # production
 /dist/
-/export/electron
-/export/common
+/out-tsc/
+
+# Tauri
+/src-tauri/target/
+/src-tauri/gen/
 
 # misc
 .DS_Store
@@ -34,24 +32,15 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env
 
-# vercel
-.vercel
-
-#flatpak
+# flatpak (legacy)
 .flatpak/
 .flatpak-builder
 repo/
 build-dir/
 
-#vscode
 .vscode/
 
-main/*.js
-main/utils/*.js
-
-.env
 *.provisionprofile
-flags.ts
 *.p12
-dockerfile

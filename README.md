@@ -161,38 +161,40 @@ You can track all the progress here: https://github.com/orgs/upscayl/projects/1
 
 # 🛠 Development
 
-I recommend using Volta: https://volta.sh for installing Node.js.
-Download and install volta, then do: `volta install node`.
+This fork uses **Tauri 2** (Rust) + **Angular 21** (TypeScript). The upscayl-ncnn binary is spawned as a Tauri sidecar.
 
-## 🏃 Running
-> [!NOTE]
-> If you are not willing to install [git](https://git-scm.com/downloads), you can skip the first line, download [the source zip](https://github.com/upscayl/upscayl/archive/refs/heads/main.zip) and extract it to `upscayl` instead and carry on with the rest of the instructions.
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) 20+ (Volta recommended)
+- [Rust](https://www.rust-lang.org/tools/install) stable
+- Windows: WebView2 (usually preinstalled on Windows 10/11)
+- Linux: `webkit2gtk` dev packages (see [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/))
+
+## Run locally
 
 ```sh
-git clone https://github.com/upscayl/upscayl
+git clone <your-fork-url>
 cd upscayl
-
-# INSTALL DEPENDENCIES
 npm install
-
-# RUN THE DEVELOPMENT SERVER LOCALLY
-## YOUR LOGS WILL NOW APPEAR IN THE TERMINAL
-npm run start
+npm run prepare-sidecars   # copies platform upscayl-bin into src-tauri/binaries/
+npm run dev                # Angular on :1420 + Tauri window
 ```
 
-## 🏗️ Building
+## Build installers
 
 ```sh
-# INSTALL DEPENDENCIES
 npm install
-
-# PACKAGE THE APP
-npm run dist
-
-# PUBLISH THE APP, MAKE SURE TO ADD GH_TOKEN= IN SHELL
-# ONLY DO THIS IF YOU'RE A MAINTAINER
-npm run publish-app
+npm run prepare-sidecars
+npm run build              # produces installers under src-tauri/target/release/bundle/
 ```
+
+## Auto-updater (deferred)
+
+`tauri-plugin-updater` is not wired in v1. Search the repo for `TODO(updater):` for integration points (Rust plugins, settings UI, CI signing).
+
+## Release CI
+
+Tag a release as `v*` (e.g. `v2026.0.1`) to trigger [`.github/workflows/release.yml`](.github/workflows/release.yml), which builds Windows, macOS, and Linux artifacts via `tauri-action`.
 
 # 🤓 FAQ
 
