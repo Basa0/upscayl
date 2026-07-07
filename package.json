@@ -19,12 +19,12 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@angular/aria": "^21.2.0",
-    "@angular/common": "^21.2.0",
-    "@angular/compiler": "^21.2.0",
-    "@angular/core": "^21.2.0",
-    "@angular/forms": "^21.2.0",
-    "@angular/platform-browser": "^21.2.0",
+    "@angular/aria": "^22.0.3",
+    "@angular/common": "^22.0.5",
+    "@angular/compiler": "^22.0.5",
+    "@angular/core": "^22.0.5",
+    "@angular/forms": "^22.0.5",
+    "@angular/platform-browser": "^22.0.5",
     "@tauri-apps/api": "^2.10.1",
     "@tauri-apps/plugin-clipboard-manager": "^2.3.2",
     "@tauri-apps/plugin-dialog": "^2.6.0",
@@ -32,21 +32,20 @@
     "@tauri-apps/plugin-notification": "^2.3.3",
     "@tauri-apps/plugin-opener": "^2.5.3",
     "@tauri-apps/plugin-shell": "^2.3.5",
-    "lucide-angular": "^0.562.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.2.18",
-    "@angular/cli": "^21.2.18",
-    "@angular/compiler-cli": "^21.2.0",
+    "@angular/build": "^22.0.5",
+    "@angular/cli": "^22.0.5",
+    "@angular/compiler-cli": "^22.0.5",
     "@tauri-apps/cli": "^2.10.1",
     "lefthook": "^2.1.9",
     "prettier": "^3.9.4",
     "prettier-plugin-tailwindcss": "^0.8.0",
-    "typescript": "~5.9.2"
+    "typescript": "~6.0.3"
   },
   "volta": {
-    "node": "20.20.2"
+    "node": "22.16.0"
   }
 }

@@ -9,7 +9,6 @@ import { ToastService } from "./services/toast.service";
 
 @Component({
   selector: "app-root",
-  standalone: true,
   imports: [SidebarComponent, MainContentComponent, UiToastContainerComponent],
   template: `
     <div class="app-shell">

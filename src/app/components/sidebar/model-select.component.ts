@@ -7,7 +7,6 @@ import { UpscaylStateService } from "../../services/upscayl-state.service";
 
 @Component({
   selector: "app-model-select",
-  standalone: true,
   imports: [TranslatePipe],
   template: `
     <p class="step-heading">{{ "APP.MODEL_SELECTION.TITLE" | t }}</p>

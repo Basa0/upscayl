@@ -3,7 +3,6 @@ import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "ui-toggle",
-  standalone: true,
   imports: [FormsModule],
   template: `
     <label class="toggle">

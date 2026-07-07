@@ -168,7 +168,7 @@ This fork uses **Tauri 2** (Rust) + **Angular 21** (TypeScript). The upscayl-ncn
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) 20+ (Volta recommended)
+- [Node.js](https://nodejs.org/) 22+ (Volta recommended)
 - [Rust](https://www.rust-lang.org/tools/install) stable
 - Windows: WebView2 (usually preinstalled on Windows 10/11)
 - Linux: `webkit2gtk` dev packages (see [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/))

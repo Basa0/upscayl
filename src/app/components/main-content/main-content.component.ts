@@ -15,7 +15,6 @@ import type { ImageFormat } from "@common/image-formats";
 
 @Component({
   selector: "app-main-content",
-  standalone: true,
   imports: [
     TranslatePipe,
     UiButtonComponent,

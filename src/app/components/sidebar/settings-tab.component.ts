@@ -9,7 +9,6 @@ import { TauriService } from "../../services/tauri.service";
 
 @Component({
   selector: "app-settings-tab",
-  standalone: true,
   imports: [TranslatePipe, UiButtonComponent, UiToggleComponent],
   template: `
     <div class="panel-scroll">

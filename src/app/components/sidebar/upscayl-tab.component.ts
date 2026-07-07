@@ -18,7 +18,6 @@ import type {
 
 @Component({
   selector: "app-upscayl-tab",
-  standalone: true,
   imports: [
     TranslatePipe,
     UiButtonComponent,

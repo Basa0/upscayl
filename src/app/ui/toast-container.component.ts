@@ -3,7 +3,6 @@ import { ToastService } from "../services/toast.service";
 
 @Component({
   selector: "ui-toast-container",
-  standalone: true,
   template: `
     <div class="toasts">
       @for (msg of toast.messages(); track msg.id) {

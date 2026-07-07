@@ -8,7 +8,6 @@ import { UpscaylStateService } from "../../services/upscayl-state.service";
 
 @Component({
   selector: "app-sidebar",
-  standalone: true,
   imports: [TranslatePipe, UpscaylTabComponent, SettingsTabComponent],
   template: `
     <aside class="sidebar" [class.hidden]="!settings.showSidebar()">

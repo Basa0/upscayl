@@ -10,7 +10,6 @@ import {
 
 @Component({
   selector: "app-comparison-slider",
-  standalone: true,
   template: `
     <div
       class="slider"

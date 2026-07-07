@@ -2,7 +2,6 @@ import { Component, input, signal, HostListener } from "@angular/core";
 
 @Component({
   selector: "app-lens-view",
-  standalone: true,
   template: `
     <div
       class="lens-root"
